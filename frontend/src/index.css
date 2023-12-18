@@ -1,5 +1,3 @@
-/* styles.css */
-
 .homeScreen {
   position: relative;
   height: 50vh;
@@ -11,7 +9,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./images/elitebg.png'); /* Replace with your image URL */
+  background-image: url('./images/elitebg.png');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -24,10 +22,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(
-    173,
-    216,
-    230,
-    0.3
-  ); /* Adjust the RGB values and opacity as needed */
+  background-color: rgba(173, 216, 230, 0.3);
+}
+
+.detailBtn {
+  background-color: white;
+  color: #942d3b;
+  padding: 10px 20px;
+  border: 1px solid #942d3b;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 19px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.detailBtn:hover {
+  background-color: #942d3b;
+  color: white;
 }
