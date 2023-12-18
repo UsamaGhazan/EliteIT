@@ -1,0 +1,33 @@
+/* styles.css */
+
+.homeScreen {
+  position: relative;
+  height: 50vh;
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('./images/elitebg.png'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.backgroundImage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    173,
+    216,
+    230,
+    0.3
+  ); /* Adjust the RGB values and opacity as needed */
+}
