@@ -6,4 +6,9 @@ npm install
 cd ..
 In EliteIT directory run command 'npm run dev'
 The project will start after this command.
-Thank You
+
+---
+
+There are two screens HomeScreen and DetailScreen
+HomeScreen is showing 3 products and when the user star the product and submits it navigates to DetailScreen
+If you want to just access detailScreen go to http://localhost:3000/detailScreen
