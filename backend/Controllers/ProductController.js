@@ -1,11 +1,12 @@
 import asyncHandler from 'express-async-handler';
 import Product from '../Model/productModel.js';
 import Record from '../Model/recordModel.js';
+
 const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({});
-  console.log(products);
   res.json(products);
 });
+
 const addDetails = asyncHandler(async (req, res) => {
   try {
     const { name, email, product, rating } = req.body;
@@ -28,4 +29,9 @@ const addDetails = asyncHandler(async (req, res) => {
   }
 });
 
-export { addDetails, getAllProducts };
+const getDetails = asyncHandler(async (req, res) => {
+  const record = await Record.find({});
+  res.json(record);
+});
+
+export { addDetails, getAllProducts, getDetails };

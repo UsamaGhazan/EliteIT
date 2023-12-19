@@ -18,10 +18,13 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Spinner,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ProductBox from '../Components/ProductBox';
+import { useNavigate } from 'react-router-dom';
+
 const HomeScreen = () => {
   const [productRating, setProductRating] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,8 +32,10 @@ const HomeScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [dataLoading, setdataLoading] = useState(false);
+  const [productLoading, setProductLoading] = useState(false);
+  const navigate = useNavigate();
+  console.log(productLoading);
   const handleRatingChange = newRating => {
     setProductRating(newRating);
   };
@@ -46,7 +51,7 @@ const HomeScreen = () => {
 
   const handleSubmit = async () => {
     try {
-      setIsLoading(true);
+      setdataLoading(true);
 
       const response = await axios.post('/api/products', {
         name,
@@ -58,10 +63,11 @@ const HomeScreen = () => {
       console.log('Backend response:', response.data);
 
       closeModal();
+      navigate('/detailScreen');
     } catch (error) {
       console.error('Error submitting data:', error);
     } finally {
-      setIsLoading(false);
+      setdataLoading(false);
     }
   };
 
@@ -69,10 +75,13 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        setProductLoading(true);
         const response = await axios.get('/api/products');
         setProducts(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
+      } finally {
+        setProductLoading(false);
       }
     };
 
@@ -88,18 +97,7 @@ const HomeScreen = () => {
       >
         <Box className="backgroundImage" />
 
-        <VStack
-          spacing={'50px'}
-          position="absolute"
-          top="50%"
-          left="50%"
-          transform="translate(-50%, -50%)"
-          textAlign="center"
-          color="white"
-          flexDirection="column"
-          alignItems="center"
-          zIndex="1"
-        >
+        <VStack className="content" spacing={'50px'}>
           <Heading fontSize="58px" fontWeight={'700'}>
             Solutions that Inspire, Products that Deliver
           </Heading>
@@ -123,11 +121,14 @@ const HomeScreen = () => {
         </Text>
         <HStack mt={'40px'}>
           <>
-            {/* Showing all three products */}
-            {products &&
+            {productLoading ? (
+              <Spinner />
+            ) : (
+              products &&
               products.map(product => {
                 return (
                   <ProductBox
+                    key={product._id}
                     title={product.name}
                     description={product.description}
                     price={product.price}
@@ -135,7 +136,8 @@ const HomeScreen = () => {
                     onStarClick={() => openModal(product.name)}
                   />
                 );
-              })}
+              })
+            )}
           </>
           ;
         </HStack>
@@ -170,7 +172,7 @@ const HomeScreen = () => {
                 <Button
                   colorScheme="blue"
                   onClick={handleSubmit}
-                  isLoading={isLoading}
+                  isLoading={dataLoading}
                   loadingText="Submitting..."
                 >
                   Submit
