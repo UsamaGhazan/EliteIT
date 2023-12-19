@@ -84,7 +84,9 @@ const DetailsScreen = () => {
         </Heading>
         <VStack spacing={4} align="stretch">
           {loading ? (
-            <Spinner />
+            <Center>
+              <Spinner />
+            </Center>
           ) : (
             <Center>
               <Table variant="simple" maxH="650px" maxW="1120px">
