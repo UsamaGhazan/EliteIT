@@ -48,7 +48,7 @@ const HomeScreen = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
+  // When user clicks on submit button
   const handleSubmit = async () => {
     try {
       setdataLoading(true);

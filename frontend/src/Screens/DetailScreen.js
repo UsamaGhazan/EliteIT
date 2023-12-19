@@ -22,7 +22,7 @@ import Pagination from '../Components/Pagination';
 const DetailsScreen = () => {
   const [details, setDetails] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  // When the component mounts we are getting product details
   useEffect(() => {
     const fetchDetails = async () => {
       try {
