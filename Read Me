@@ -1,0 +1,9 @@
+Please keep your device connected to internet
+cd EliteIT
+npm install
+cd frontend
+npm install
+cd ..
+In EliteIT directory run command 'npm run dev'
+The project will start after this command.
+Thank You
